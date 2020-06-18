@@ -11,13 +11,7 @@ hoursArray = [
 { twelveHoursInput:"3PM", twentyFourInput:"15"},
 { twelveHoursInput: "4PM", twentyFourInput: "16"},
 { twelveHoursInput:"5PM", twentyFourInput:"17"},
-{ twelveHoursInput: "6PM", twentyFourInput: "18"},
-{ twelveHoursInput:"7PM", twentyFourInput:"19"},
-{ twelveHoursInput: "8PM", twentyFourInput: "20"},
-{ twelveHoursInput:"9PM", twentyFourInput:"21"},
-{ twelveHoursInput: "10PM", twentyFourInput: "22"},
-{ twelveHoursInput:"11PM", twentyFourInput:"23"},
-{ twelveHoursInput: "12AM", twentyFourInput: "24"},
+
 ];
   hours = 0;
   function newPlannerTimeRow() {
