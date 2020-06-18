@@ -1,59 +1,61 @@
-$(document).ready(function () {
-    console.log("function working")
-    $("#currentDay").text(moment().format("MMM Do YYYY"));
+$(document).ready(function(){
+  $("CurrentDay").text(moment().format('MMMM Do YYYY'));  
+   
+hoursArray = [
+  { twelveHoursInput:"9AM", twentyFourInput:"9"},
+{ twelveHoursInput: "10AM", twentyFourInput: "10"},
+{ twelveHoursInput:"11AM", twentyFourInput:"11"},
+{ twelveHoursInput: "12PM", twentyFourInput: "12"},
+{ twelveHoursInput:"1PM", twentyFourInput:"13"},
+{ twelveHoursInput: "2PM", twentyFourInput: "14"},
+{ twelveHoursInput:"3PM", twentyFourInput:"15"},
+{ twelveHoursInput: "4PM", twentyFourInput: "16"},
+{ twelveHoursInput:"5PM", twentyFourInput:"17"},
+{ twelveHoursInput: "6PM", twentyFourInput: "18"},
+{ twelveHoursInput:"7PM", twentyFourInput:"19"},
+{ twelveHoursInput: "8PM", twentyFourInput: "20"},
+{ twelveHoursInput:"9PM", twentyFourInput:"21"},
+{ twelveHoursInput: "10PM", twentyFourInput: "22"},
+{ twelveHoursInput:"11PM", twentyFourInput:"23"},
+{ twelveHoursInput: "12AM", twentyFourInput: "24"},
+];
+  hours = 0;
+  function newPlannerTimeRow() {
+var newLane = $("<div>").addClass("row");
+var colum1 = $("<div>")
 
-    var timeList = [
-        "9 AM ",
-        "10 AM ",
-        "11 AM ",
-        "12 PM ",
-        "1 PM ",
-        "2 PM",
-        "3 PM ",
-        "4 PM ",
-        "5PM ",
-    ];
-})
-
-    var currentTime = moment().format("h A");
-    var timeList = timeList.length
-    for (var i = 0; i < timeList.length; i++) {
-        var container = $(".time-block");
-        var hourList = timeList[i];
-        var timeRow = $("<div class= 'row'>");
-        var timeCol = $("<div class= 'col-sm-1 hour'>");
-        var scheduleCol = $("<textarea>", {
-            class: "col-sm-8 time-sensitive form-control",
-            id: "text-" + i
-        });
-        var saveCol = $("<button>", {
-            class: "col-sm-1 saveBtn",
-            id: "btn-" + i
-        });
-        timeRow.text(hourList);
-        timeRow.append(timeCol).append(scheduleCol).append(saveCol);
-        container.append(timeRow);
-        scheduleCol.after(saveCol);
-        $(".saveBtn").html('<svg xmlns="http;//www.w3.org/2000/svg" height="24" viewBox="0 0');
-        saveCol.addClass(".saveBtn i:hover");
-        if (hourList === currentTime) {
-            $(scheduleCol).addClass("present");
-        } else if (hourList < currentTime) {
-            $(scheduleCol).addclass("past");
-        } else {
-            $(scheduleCol).addClass("future");
-        }
-        $("#btn-" + i).on("click", function (event) {
-            // console.log this
-            console.log(this);
-            var text = $(".form-control").val();
-            event.preventDefault();
-            if (text != "") {
-                console.log(text);
-            } else {
-                console.log("this is empty");
-            }
-            localStorage.setItem("text", Json.stringify(text))
-
-        });
-    }
+          .addClass("col-sm-1 hour")
+          .text(hoursArray[hours].twelveHoursInput);
+     
+        var colum = $("<textarea>").addClass(`text-${hoursArray[hours].twentyFourInput} col-sm-10`);
+        
+        var colum3 = $("<button>").attr("data-time",hoursArray[hours].twentyFourInput)
+          .addClass("col-sm-1 saveBtn")
+          .html("<i class='fas fa-save'></i>");
+        newLane.append(colum1);
+        newLane.append(colum);
+        newLane.append(colum3);
+        $(".container").append(newLane);
+      if (hoursArray[hours].twentyFourInput > moment().format('H')){
+        colum.addClass("future");
+        // console.log here
+      } else if (hoursArray[hours].twentyFourInput < moment().format('H')){
+        colum.addClass("past");
+    } else {
+        colum.addClass("present");
+        
+      };
+    hours++;;}
+      
+      for (var i = 0; i < hoursArray.length; i++) {
+        newPlannerTimeRow();
+      }
+      itemsArray=[];
+    $(".container").on("click", ".saveBtn", function(event) {
+        event.preventDefault();
+        console.log(event.target);
+        console.log(event.target.attributes[0]);
+        (`text-${event.target.attributes[0]}`);
+    })
+    });
+  
