@@ -10,7 +10,9 @@ Usage
 Credits
 
 II. Installation
+
 WORKSCHEDULER is a friendly app that our clients will be able to use. WORKSCHEDULER runs in the browser and feature dynamically updated HTML and CSS powered by Jquery.
+
 III. Usage
 
 How to use this app? very simple. You only have to go to the browser and type:https://binjim2002.github.io/gt-jquery-homework and this will automatically take you to the home page and you can begin to use the app.
